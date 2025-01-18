@@ -29,27 +29,3 @@ current_plane = plane_dict[0]
 x = plane_dict[0]
 print(x["manufacturer"])
 
-
-
-"""if __name__ == "__main__":
-	plane_dict = response().json()
-	for i in range(len(plane_dict)):
-		current_plane = plane_dict[i]
-		print(f"{current_plane}")
-		#print (f"{current_plane.get('manufacturer')}, {current_plane.get('model')}")
-
-
-response = requests.get(api_url, headers={'X-Api-Key': 'UJZFFheG86lfY8Ol+/ds3A==5MGSoraTQj4jIVCG'})
-if response.status_code == requests.codes.ok:
-    print(response.text)else:
-    print("Error:", response.status_code, response.text)
-    
-    
-     plane_dict = response.json()
-        current_plane = plane_dict[0]
-        value_list = []
-        print(current_plane.values())
-        for x in current_plane.values():
-            value_list.append = x
-            
-"""
