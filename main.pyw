@@ -13,6 +13,8 @@ class mainwindow(Ui_MainWindow, QMainWindow):
         self.plane_dict = []
         self.z = 0
         self.setWindowIcon(QIcon("planedb_icon.png"))
+        self.title = "Doody's Plane Database"
+        self.setWindowTitle(self.title)
 
     def comboBoxValue(self):
         return self.comboBox.currentText()
@@ -59,7 +61,7 @@ class mainwindow(Ui_MainWindow, QMainWindow):
             dialog.exec_()
         else:
             try:
-                if self.plane_dict != []:
+                if self.plane_dict:
                     current_plane = self.plane_dict[self.z]
                     self.xy_label.setText(f"{self.z + 1} / {len(self.plane_dict)}")
                     attribute_list = []
@@ -102,6 +104,11 @@ class mainwindow(Ui_MainWindow, QMainWindow):
         search_criteria = self.comboBoxValue()
         x = str(self.lineEdit.text())
         y = str(self.lineEdit_2.text())
+        if x == "" or y == "":
+            dialog = ErrorDialog()
+            dialog.not_found_error()
+            dialog.exec()
+            return
         if search_criteria != "Manufacturer / Model":
             try:
                 x = float(x)
@@ -110,7 +117,6 @@ class mainwindow(Ui_MainWindow, QMainWindow):
                 dialog = ErrorDialog()
                 dialog.not_found_error()
                 dialog.exec_()
-                return
         try:
             if search_criteria == "Manufacturer / Model":
                 api_url = 'https://api.api-ninjas.com/v1/aircraft?manufacturer={}&model={}&limit={}'.format(x, y, 30)
