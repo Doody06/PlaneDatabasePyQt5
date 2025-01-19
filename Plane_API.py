@@ -1,6 +1,6 @@
 import requests
 import os
-
+from dotenv import load_dotenv
 x = 0
 y = 10001
 search_criteria = "MinMax range"
@@ -22,6 +22,7 @@ elif search_criteria == "MinMax Wingspan":
 # 'https://api.api-ninjas.com/v1/aircraft?manufacturer={}&model={}
 
 def response():
+	load_dotenv("SECRET.env")
 	API_KEY = os.getenv("API_KEY")
 	respond = requests.get(api_url, headers={'X-Api-Key': API_KEY})
 	return (respond)

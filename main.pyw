@@ -1,4 +1,5 @@
 import os
+from dotenv import load_dotenv
 from planedb import Ui_MainWindow
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QWidget
 from PyQt5.QtGui import QIcon
@@ -46,6 +47,7 @@ class mainwindow(Ui_MainWindow, QMainWindow):
 
     def access_API(self, api_url):
         try:
+            load_dotenv("SECRET.env")
             API_KEY = os.getenv("API_KEY")
             respond = requests.get(api_url, headers={'X-Api-Key': API_KEY})
         except Exception as e:  # need to find excat exception that occurs when no internet
